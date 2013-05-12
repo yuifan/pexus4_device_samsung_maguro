@@ -1,4 +1,4 @@
-# Copyright (C) 2007 The Android Open Source Project
+# Copyright (C) 2011 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,21 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# BoardConfig.mk
-#
-# Product-specific compile-time definitions.
-#
+# Default values, possibly overridden by BoardConfigVendor.mk
+TARGET_BOARD_INFO_FILE := device/samsung/maguro/board-info.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/maguro/bluetooth
 
-# Set this up here so that BoardConfigVendor.mk can override it
-BOARD_USES_GENERIC_AUDIO := false
+# Use the non-open-source part, if present
+-include vendor/samsung/maguro/BoardConfigVendor.mk
 
-BOARD_USES_LIBSECRIL_STUB := true
+# Use the part that is common between all tunas
+include device/samsung/tuna/BoardConfig.mk
 
-BOARD_NO_PAGE_FLIPPING := true
-BOARD_NO_32BPP := true
-
-# Use the non-open-source parts, if they're present
--include vendor/samsung/crespo/BoardConfigVendor.mk
-
-# Use the parts that are common between all crespos
-include device/samsung/crespo/BoardConfigCommon.mk
